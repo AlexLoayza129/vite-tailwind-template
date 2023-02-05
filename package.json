@@ -1,0 +1,28 @@
+{
+  "name": "wp-template-r2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./js/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexLoayza129/wp-template-r2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexLoayza129/wp-template-r2/issues"
+  },
+  "homepage": "https://github.com/AlexLoayza129/wp-template-r2#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.4",
+    "vite": "^4.1.1"
+  }
+}
