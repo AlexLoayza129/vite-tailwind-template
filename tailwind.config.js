@@ -1,7 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   mode: 'jit',
-  content: ["./*.html"],
+  content: [
+    "./*.html",
+    "./dist/*.html"
+  ],
   theme: {
     extend: {
       colors:{
@@ -10,7 +13,8 @@ module.exports = {
         twitter: '#007bff',
         youtube: '#fa0910',
         instagram: '#a73699',
-        whatsapp: '#25D366'
+        whatsapp: '#25D366',
+        mutedcustom: '#b3b2b1'
       },
       rotate: {
         '360': '360deg'

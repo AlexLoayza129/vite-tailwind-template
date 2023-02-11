@@ -1,66 +1,73 @@
 let containerSize;
 const containerSlide = document.getElementById('container-slide');
 const trackSlide = document.getElementById('track-slide');
-const firstChildElement = trackSlide.firstElementChild;
-const clone = firstChildElement.cloneNode(true);
-trackSlide.appendChild(clone);
 
-const slides = [...document.querySelectorAll('.slides')];
-let count = 1;
+if(trackSlide !== null){
+    const firstChildElement = trackSlide.firstElementChild;
+    const clone = firstChildElement.cloneNode(true);
+    trackSlide.appendChild(clone);
 
-let slideAnimate;
+    const slides = [...document.querySelectorAll('.slides')];
+    let count = 1;
 
-function init () {
-    // volvermos a obtener la nueva medida del contenedor
-    containerSize = containerSlide.clientWidth;
-    // asignamos un tamaño al contenedor track basando en la cantidad de slides q tiene
-    trackSlide.style.width = `${containerSize * slides.length}px`;
-    // asignamos el tamaño de cada slides basando en el container
+    let slideAnimate;
 
-    if(count) {
-        trackSlide.style.transform = `translateX(-${containerSize * (count - 1)}px)`;
-    }
+    function init () {
+        // volvermos a obtener la nueva medida del contenedor
+        containerSize = containerSlide.clientWidth;
+        // asignamos un tamaño al contenedor track basando en la cantidad de slides q tiene
+        trackSlide.style.width = `${containerSize * slides.length}px`;
+        // asignamos el tamaño de cada slides basando en el container
 
-    slides.forEach(el => {
-        el.style.width = `${containerSize}px`;
-    });
-
-    slideAnimate = setInterval(() => {
-        if(slides.length === count) {
-            count = 1;
+        if(count) {
+            trackSlide.style.transform = `translateX(-${containerSize * (count - 1)}px)`;
         }
-        animateClass();
-        count++
-    }, 5000);
-}
 
-// iniciamos el slide
-init();
+        slides.forEach(el => {
+            el.style.width = `${containerSize}px`;
+        });
 
-window.onresize = () => {
-    if(slideAnimate) {
-        clearInterval(slideAnimate);
+        slideAnimate = setInterval(() => {
+            if(slides.length === count) {
+                count = 1;
+            }
+            animateClass();
+            count++
+        }, 5000);
     }
+
+    // iniciamos el slide
     init();
-}
 
-function animateClass () {
-    addClassAnimate(removeClassAnimate);
-    trackSlide.style.transform = `translateX(-${containerSize * count}px)`;
-}
-function addClassAnimate (callback) {
-    trackSlide.classList.add('transition-transform', 'duration-200', 'ease-out')
-    setTimeout(() => {
-        callback();
-    }, 200);
-}
-function removeClassAnimate () {
-    trackSlide.classList.remove('transition-transform', 'duration-200', 'ease-out');
-    isLastSlide();
-}
+    window.onresize = () => {
+        if(slideAnimate) {
+            clearInterval(slideAnimate);
+        }
+        init();
+    }
 
-function isLastSlide () {
-    if(slides.length === count) {
-        trackSlide.style.transform = `translateX(0px)`;
+    function animateClass () {
+        addClassAnimate(removeClassAnimate);
+        trackSlide.style.transform = `translateX(-${containerSize * count}px)`;
+    }
+
+    function addClassAnimate (callback) {
+        trackSlide.classList.add('transition-transform', 'duration-200', 'ease-out')
+        setTimeout(() => {
+            callback();
+        }, 200);
+    }
+    function removeClassAnimate () {
+        trackSlide.classList.remove('transition-transform', 'duration-200', 'ease-out');
+        isLastSlide();
+    }
+
+    function isLastSlide () {
+        if(slides.length === count) {
+            trackSlide.style.transform = `translateX(0px)`;
+        }
     }
 }
+
+
+
